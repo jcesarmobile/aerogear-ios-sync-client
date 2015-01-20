@@ -48,7 +48,7 @@ To use AeroGearSyncClient in your project add the following 'Podfile' to your pr
 
     pod 'AeroGearSyncClient', :git => "https://github.com/aerogear/aerogear-ios-sync-client.git", :branch => "master"
 
-    target 'AeroGearSyncClientTests' do
+    target 'YourProjectNameTests' do
         pod 'AeroGearSyncClient', :git => "https://github.com/aerogear/aerogear-ios-sync-client.git", :branch => "master"
     end
     
