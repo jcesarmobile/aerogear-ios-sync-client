@@ -29,7 +29,8 @@ class SyncClientTests: XCTestCase {
         self.synchonizer = JsonDiffMatchPatchSynchronizer()
         self.engine = ClientSyncEngine(synchronizer: synchonizer, dataStore: dataStore)
     }
-
+    // TODO AGIOS-344 move integration test separate target
+/*
     func testAddDocument() {
         let syncClient = SyncClient(url: "http://localhost:7777/sync", syncEngine: engine, contentSerializer: jsonContentSerializer)
         let id = NSUUID().UUIDString
@@ -61,5 +62,5 @@ class SyncClientTests: XCTestCase {
         waitForExpectationsWithTimeout(3.0, handler:nil)
         syncClient.disconnect()
     }
-
+*/
 }
