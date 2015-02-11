@@ -1,4 +1,4 @@
-# AeroGear iOS Differential Synchronization Client [![Build Status](https://travis-ci.org/aerogear/aerogear-ios-sync-client.png)](https://travis-ci.org/aerogear/aerogear-ios-sync-client) 
+# AeroGear iOS Differential Synchronization Client [![Build Status](https://travis-ci.org/aerogear/aerogear-ios-sync-client.png)](https://travis-ci.org/aerogear/aerogear-ios-sync-client) [![Pod Version](http://img.shields.io/cocoapods/v/AeroGearSyncClient.svg?style=flat)](http://cocoadocs.org/docsets/AeroGearSyncClient/)
 This project represents a client side implementation for [AeroGear Differential 
 Synchronization (DS) Server](https://github.com/danbev/aerogear-sync-server/tree/differential-synchronization).
 
