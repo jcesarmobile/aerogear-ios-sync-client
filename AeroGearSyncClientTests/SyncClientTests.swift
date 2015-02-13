@@ -3,6 +3,7 @@ import XCTest
 import AeroGearSyncClient
 import AeroGearSync
 
+/*
 class SyncClientTests: XCTestCase {
     
     typealias T = JsonConverter.Json
@@ -64,3 +65,4 @@ class SyncClientTests: XCTestCase {
     }
 */
 }
+*/
