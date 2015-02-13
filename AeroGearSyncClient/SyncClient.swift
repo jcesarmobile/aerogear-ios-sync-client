@@ -1,45 +1,43 @@
 import Foundation
 import AeroGearSync
-import SwiftyJSON
 import Starscream
 
 /**
 * A Differential Synchronization client that uses the WebSocket as the transport protocol.
 */
-public class SyncClient<CS:ClientSynchronizer, D:DataStore, S:ContentSerializer where CS.T == D.T, CS.T == S.T>: WebSocketDelegate {
-
+public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS.D == D.D>: WebSocketDelegate {
+    
     typealias T = CS.T
     var ws: WebSocket!
     var documents = Dictionary<String, ClientDocument<T>>()
     let syncEngine: ClientSyncEngine<CS, D>
-    let contentSerializer: S
-
+    
     /**
     Initializes a SyncClient.
-
+    
     :param: url the URL of the sync server
     :param: syncEngine the ClientSyncEngine to be used by this SyncClient
     :param: contentSerializer a concrete ContentSerializer that allows for control of serializing the document content
     */
-    public convenience init(url: String, syncEngine: ClientSyncEngine<CS, D>, contentSerializer: S) {
-        self.init(url: url, optionalProtocols: Optional.None, syncEngine: syncEngine, contentSerializer: contentSerializer)
+    public convenience init(url: String, syncEngine: ClientSyncEngine<CS, D>) {
+        self.init(url: url, optionalProtocols: Optional.None, syncEngine: syncEngine)
     }
-
+    
     /**
     Initializes a SyncClient.
-
+    
     :param: url the URL of the sync server
     :param: protocols optional WebSocket protocols that the underlying WebSocket should use.
     :param: syncEngine the ClientSyncEngine to be used by this SyncClient
     :param: contentSerializer a concrete ContentSerializer that allows for control of serializing the document content
     */
-    public convenience init(url: String, protocols: Array<String>, syncEngine: ClientSyncEngine<CS, D>, contentSerializer: S) {
-        self.init(url: url, optionalProtocols: protocols, syncEngine: syncEngine, contentSerializer: contentSerializer)
+    public convenience init(url: String, protocols: Array<String>, syncEngine: ClientSyncEngine<CS, D>) {
+        self.init(url: url, optionalProtocols: protocols, syncEngine: syncEngine)
     }
-
-    private init(url: String, optionalProtocols: Array<String>?, syncEngine: ClientSyncEngine<CS, D>, contentSerializer: S) {
+    
+    private init(url: String, optionalProtocols: Array<String>?, syncEngine: ClientSyncEngine<CS, D>) {
         self.syncEngine = syncEngine
-        self.contentSerializer = contentSerializer
+        
         if let protocols = optionalProtocols {
             ws = WebSocket(url: NSURL(string: url)!, protocols: protocols)
         } else {
@@ -47,57 +45,57 @@ public class SyncClient<CS:ClientSynchronizer, D:DataStore, S:ContentSerializer 
         }
         ws.delegate = self
     }
-
+    
     /**
     Connects this SyncClient to the SyncServer
-
+    
     :returns: self to support method chaining
     */
     public func connect() -> Self {
         ws.connect()
         return self
     }
-
+    
     /**
     Adds a document to this SyncClient.
-
+    
     :param: doc the ClientDocument to add to this SyncClient
     :param: callback the callback that will be invoked with updates from the server.
     */
     public func addDocument(doc: ClientDocument<T>, callback: (ClientDocument<T>) -> ()) {
         syncEngine.addDocument(doc, callback: callback)
-        ws.writeString(JsonConverter.addMsgJson(doc, serializer: contentSerializer))
+        ws.writeString(syncEngine.documentToJson(doc))
     }
-
+    
     /**
     Computes a diff of the passed in document with the version in this SyncClient and
     sends the resulting PatchMessage to the server.
-
+    
     :param: doc the ClientDocument with updates to be diffed
     :returns: self to support method chaining
     */
     public func diffAndSend(doc: ClientDocument<T>) -> Self {
         if let patchMessage = syncEngine.diff(doc) {
-            ws.writeString(JsonConverter.patchMsgAsJson(patchMessage))
+            ws.writeString(patchMessage.asJson())
         }
         return self
     }
-
+    
     /**
     Disconnects this SyncClient from the server.
     */
     public func disconnect() {
         ws.disconnect()
     }
-
+    
     public func websocketDidReceiveMessage(text: String) {
-        if let patchMessage = JsonConverter.asPatchMessage(text) {
+        if let patchMessage = syncEngine.patchMessageFromJson(text) {
             syncEngine.patch(patchMessage)
         } else {
-            println("Recieved none patchMessage: \(text)")
+            println("Received none patchMessage: \(text)")
         }
     }
-
+    
     public func websocketDidConnect() {
         println("Websocket is connected")
     }
@@ -117,7 +115,5 @@ public class SyncClient<CS:ClientSynchronizer, D:DataStore, S:ContentSerializer 
     public func websocketDidReceiveData(data: NSData) {
         println("Message: \(data)")
     }
-
+    
 }
-
-
