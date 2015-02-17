@@ -22,7 +22,7 @@ import Starscream
 /**
 * A Differential Synchronization client that uses the WebSocket as the transport protocol.
 */
-public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS.D == D.D>: WebSocketDelegate {
+public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS.D == D.D, CS.P.E == CS.D>: WebSocketDelegate {
     
     typealias T = CS.T
     var ws: WebSocket!
