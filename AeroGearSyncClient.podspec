@@ -9,6 +9,6 @@ Pod::Spec.new do |s|
   s.platform     = :ios, 8.0
   s.requires_arc = 'true'
   s.source_files = 'AeroGearSyncClient/*.{h,swift}'
-  s.dependency  'AeroGearSync', '0.1.0'
+  s.dependency  'AeroGearSync/Core', '0.1.0'
   s.dependency  'Starscream', '0.9.1'
 end
