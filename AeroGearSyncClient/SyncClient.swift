@@ -20,9 +20,13 @@ import AeroGearSync
 import Starscream
 
 /**
-* A Differential Synchronization client that uses the WebSocket as the transport protocol.
+A Differential Synchronization client that uses the WebSocket as the transport protocol.
+<br/><br/>
+The ClientSynchronizer generic type is the type that this implementation can handle. it could be either JsonPatchSynchronizer or diffMatchPatchSynchronizer.
+The DataStore generic type is the type that this implementation can handle. For now, we have InMemoryDataStore only.
+The ClientSynchronizer and DataStore should have compatible document type.
 */
-public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS.D == D.D, CS.P.E == CS.D>: WebSocketDelegate {
+public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS.D == D.D, CS.P.E == CS.D> : WebSocketDelegate {
     
     typealias T = CS.T
     var ws: WebSocket!
@@ -32,9 +36,9 @@ public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS
     /**
     Initializes a SyncClient.
     
-    :param: url the URL of the sync server
-    :param: syncEngine the ClientSyncEngine to be used by this SyncClient
-    :param: contentSerializer a concrete ContentSerializer that allows for control of serializing the document content
+    :param: url the URL of the sync server.
+    :param: syncEngine the ClientSyncEngine to be used by this SyncClient.
+    :param: contentSerializer a concrete ContentSerializer that allows for control of serializing the document content.
     */
     public convenience init(url: String, syncEngine: ClientSyncEngine<CS, D>) {
         self.init(url: url, optionalProtocols: Optional.None, syncEngine: syncEngine)
@@ -45,8 +49,8 @@ public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS
     
     :param: url the URL of the sync server
     :param: protocols optional WebSocket protocols that the underlying WebSocket should use.
-    :param: syncEngine the ClientSyncEngine to be used by this SyncClient
-    :param: contentSerializer a concrete ContentSerializer that allows for control of serializing the document content
+    :param: syncEngine the ClientSyncEngine to be used by this SyncClient.
+    :param: contentSerializer a concrete ContentSerializer that allows for control of serializing the document content.
     */
     public convenience init(url: String, protocols: Array<String>, syncEngine: ClientSyncEngine<CS, D>) {
         self.init(url: url, optionalProtocols: protocols, syncEngine: syncEngine)
@@ -64,9 +68,9 @@ public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS
     }
     
     /**
-    Connects this SyncClient to the SyncServer
+    Connects this SyncClient to the SyncServer.
     
-    :returns: self to support method chaining
+    :returns: self to support method chaining.
     */
     public func connect() -> Self {
         ws.connect()
@@ -76,7 +80,7 @@ public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS
     /**
     Adds a document to this SyncClient.
     
-    :param: doc the ClientDocument to add to this SyncClient
+    :param: doc the ClientDocument to add to this SyncClient.
     :param: callback the callback that will be invoked with updates from the server.
     */
     public func addDocument(doc: ClientDocument<T>, callback: (ClientDocument<T>) -> ()) {
@@ -88,8 +92,8 @@ public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS
     Computes a diff of the passed in document with the version in this SyncClient and
     sends the resulting PatchMessage to the server.
     
-    :param: doc the ClientDocument with updates to be diffed
-    :returns: self to support method chaining
+    :param: doc the ClientDocument with updates to be diffed.
+    :returns: self to support method chaining.
     */
     public func diffAndSend(doc: ClientDocument<T>) -> Self {
         if let patchMessage = syncEngine.diff(doc) {
