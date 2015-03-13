@@ -13,7 +13,7 @@ performs the actual work of the DiffSync protocol, please refer to it's README.m
 This project used [CocoaPods](http://cocoapods.org/) to managed its dependencies. The following command 
 must be run prior to building:
     
-    sudo gem install cocoapods --pre
+    sudo gem install cocoapods
     pod install
 
 ## Building
@@ -39,7 +39,7 @@ aerogear-ios-sync-client/AeroGearSyncClientTests/SyncClientTests.swift:44: error
 ```
 
 ### [CocoaPods](http://cocoapods.org/) 
-At this time, Cocoapods support for Swift frameworks is supported in a [pre-release](http://blog.cocoapods.org/Pod-Authors-Guide-to-CocoaPods-Frameworks/).
+Support for Swift frameworks is supported from [CocoaPods-0.36 release](http://blog.cocoapods.org/CocoaPods-0.36/) upwards.
 
 To use AeroGearSyncClient in your project add the following 'Podfile' to your project
 
