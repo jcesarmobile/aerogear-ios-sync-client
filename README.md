@@ -1,85 +1,68 @@
-# AeroGear iOS Differential Synchronization Client [![Build Status](https://travis-ci.org/aerogear/aerogear-ios-sync-client.png)](https://travis-ci.org/aerogear/aerogear-ios-sync-client) [![Pod Version](http://img.shields.io/cocoapods/v/AeroGearSyncClient.svg?style=flat)](http://cocoadocs.org/docsets/AeroGearSyncClient/)
+# aerogear ios sync client [![Build Status](https://travis-ci.org/aerogear/aerogear-ios-sync-client.png)](https://travis-ci.org/aerogear/aerogear-ios-sync-client) [![Pod Version](http://img.shields.io/cocoapods/v/AeroGearSyncClient.svg?style=flat)](http://cocoadocs.org/docsets/AeroGearSyncClient/)
 
-> This module is beta software, it currently supports Xcode 6.1.1
+> **NOTE:**  The library has been tested with Xcode 6.1.1
 
-This project represents a client side implementation for [AeroGear Differential 
-Synchronization (DS) Server](https://github.com/danbev/aerogear-sync-server/tree/differential-synchronization).
+AeroGear iOS Differential Synchronization Client Engine represents a client side implementation for [AeroGear Differential 
+Synchronization (DS) Server](https://github.com/aerogear/aerogear-sync-server/).
 
-This client uses the communication with the backend server implementation. The [iOS SyncEngine](https://github.com/danbev/aerogear-ios-sync)
-performs the actual work of the DiffSync protocol, please refer to it's README.md for more details.
+This client uses the communication with the backend server implementation. The [iOS SyncEngine](https://github.com/aerogear/aerogear-ios-sync)
+performs the actual work of the DiffSync protocol, please refer to its README.md for more details.
 
-## Prerequisites 
+|                 | Project Info  |
+| --------------- | ------------- |
+| License:        | Apache License, Version 2.0  |
+| Build:          | CocoaPods  |
+| Documentation:  | http://aerogear.org/ios/  |
+| Issue tracker:  | https://issues.jboss.org/browse/AGIOS  |
+| Mailing lists:  | [aerogear-users](http://aerogear-users.1116366.n5.nabble.com/) ([subscribe](https://lists.jboss.org/mailman/listinfo/aerogear-users))  |
+|                 | [aerogear-dev](http://aerogear-dev.1069024.n5.nabble.com/) ([subscribe](https://lists.jboss.org/mailman/listinfo/aerogear-dev))  |
 
-This project used [CocoaPods](http://cocoapods.org/) to managed its dependencies. The following command 
-must be run prior to building:
-    
-    sudo gem install cocoapods
-    pod install
+## Build, test and play with aerogear-ios-sync-client
 
-## Building
+1. Clone this project
 
-Building can be done by opening the project in Xcode:
+2. Get the dependencies
 
-    open AeroGearSyncClient.xcworkspace
+The project uses [cocoapods](http://cocoapods.org) 0.36 release for handling its dependencies. As a pre-requisite, install [cocoapods](http://blog.cocoapods.org/CocoaPods-0.36/) and then install the pod. On the root directory of the project run:
+```bash
+pod install
+```
+3. open AeroGearSyncClient.xcworkspace
 
-or you can use the command line:
+## Adding the library to your project 
+To add the library in your project, you can either use [Cocoapods](http://cocoapods.org) or manual install in your project. See the respective sections below for instructions:
 
-    xcodebuild -workspace AeroGearSyncClient.xcworkspace/ -scheme AeroGearSyncClient -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+### Using [Cocoapods](http://cocoapods.org)
+Support for Swift frameworks is supported from [CocoaPods-0.36 release](http://blog.cocoapods.org/CocoaPods-0.36/) upwards. In your ```Podfile``` add:
 
-## Testing
-Tests can be run from with in Xcode using Product->Test menu option (CMD+U).  
-You can also run test from the command:
+```
+source 'https://github.com/CocoaPods/Specs.git'
 
-    xcodebuild -workspace AeroGearSyncClient.xcworkspace/ -scheme AeroGearSyncClient -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO test
+xcodeproj 'YourProjectName.xcodeproj'
+platform :ios, '8.0'
+use_frameworks!
 
-_Note_ At the moment the test require that the [AeroGear Differential Synchronization (DS) Server](https://github.com/danbev/aerogear-sync-server/tree/differential-synchronization).
-is running. If it is not en error message simliar to this will be displayed:
-```shell
-aerogear-ios-sync-client/AeroGearSyncClientTests/SyncClientTests.swift:44: error: -[AeroGearSyncClientTests.SyncClientTests testDiffAndSync] : Asynchronous wait failed: Exceeded timeout of 3 seconds, with unfulfilled expectations: "Callback should be invoked. Is the Sync Server running?".
+pod 'AeroGearSyncClient'
 ```
 
-### [CocoaPods](http://cocoapods.org/) 
-Support for Swift frameworks is supported from [CocoaPods-0.36 release](http://blog.cocoapods.org/CocoaPods-0.36/) upwards.
+and then:
 
-To use AeroGearSyncClient in your project add the following 'Podfile' to your project
+```bash
+pod install
+```
 
-    source 'https://github.com/CocoaPods/Specs.git'
+to install your dependencies.
 
-    xcodeproj 'YourProjectName.xcodeproj'
-    platform :ios, '8.0'
+### Manual Installation
+Follow these steps to add the library in your Swift project:
 
-    pod 'AeroGearSyncClient', :git => "https://github.com/aerogear/aerogear-ios-sync-client.git", :branch => "master"
-
-    target 'YourProjectNameTests' do
-        pod 'AeroGearSyncClient', :git => "https://github.com/aerogear/aerogear-ios-sync-client.git", :branch => "master"
-    end
-    
-Then run:
-
-    pod install
-
-#### Updating the Cocoapod
-You can validate AeroGearSyncClient.podspec using:
-
-    pod spec lint AeroGearSyncClient.podspec  --verbose --allow-warnings
-
-This should be tested with a sample project before releasing it. This can be done by adding the following line to a ```Podfile```:
-    
-    pod 'AeroGearSyncClient', :git => "https://github.com/username/aerogear-ios-sync-client.git", :branch => "cocoapods-update"
-
-Then run:
-    
-    pod install
-
-If all goes well you are ready to release. First, create a tag and push:
-
-    git tag -s 'version'
-    git push --tags
-
-Once the tag is available you can send the library to the Specs repo. 
-For this you'll have to follow the instructions in [Getting Setup with Trunk](http://guides.cocoapods.org/making/getting-setup-with-trunk.html).
-
-    pod trunk push AeroGearSyncClient.podspec
-
+1. Add AeroGearSyncClient as a [submodule](http://git-scm.com/docs/git-submodule) in your project. Open a terminal and navigate to your project directory. Then enter:
+```bash
+git submodule add https://github.com/aerogear/aerogear-ios-sync-client.git
+```
+2. Open the `aerogear-ios-sync-client` folder, and drag the `AeroGearSyncClient.xcodeproj` into the file navigator in Xcode.
+3. In Xcode select your application target  and under the "Targets" heading section, ensure that the 'iOS  Deployment Target'  matches the application target of AeroGearSyncClient.framework (Currently set to 8.0).
+5. Select the  "Build Phases"  heading section,  expand the "Target Dependencies" group and add  `AeroGearSyncClient.framework`.
+7. Click on the `+` button at the top left of the panel and select "New Copy Files Phase". Rename this new phase to "Copy Frameworks", set the "Destination" to "Frameworks", and add `AeroGearSyncClient.framework`.
 
 
