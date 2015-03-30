@@ -43,8 +43,9 @@ platform :ios, '8.0'
 use_frameworks!
 
 pod 'AeroGearSyncClient'
+pod 'AeroGearSync/JSONPatch'
 ```
-
+NOTE: AeroGearSync is using podsubspec, you will need to specify which algorithm option you want to go. For more details, see [aerogear-ios-cookbook/Jedi app](https://github.com/aerogear/aerogear-ios-cookbook/tree/master/Jedi).
 and then:
 
 ```bash
@@ -65,4 +66,4 @@ git submodule add https://github.com/aerogear/aerogear-ios-sync-client.git
 5. Select the  "Build Phases"  heading section,  expand the "Target Dependencies" group and add  `AeroGearSyncClient.framework`.
 7. Click on the `+` button at the top left of the panel and select "New Copy Files Phase". Rename this new phase to "Copy Frameworks", set the "Destination" to "Frameworks", and add `AeroGearSyncClient.framework`.
 
-
+Repeat the same instructions for [aerogear-ios-sync](https://github.com/aerogear/aerogear-ios-sync).
