@@ -1,6 +1,6 @@
 # aerogear ios sync client [![Build Status](https://travis-ci.org/aerogear/aerogear-ios-sync-client.png)](https://travis-ci.org/aerogear/aerogear-ios-sync-client) [![Pod Version](http://img.shields.io/cocoapods/v/AeroGearSyncClient.svg?style=flat)](http://cocoadocs.org/docsets/AeroGearSyncClient/)
 
-> **NOTE:**  The library has been tested with Xcode 6.1.1
+> **NOTE:**  The library has been tested with Xcode 6.3
 
 AeroGear iOS Differential Synchronization Client Engine represents a client side implementation for [AeroGear Differential 
 Synchronization (DS) Server](https://github.com/aerogear/aerogear-sync-server/).
