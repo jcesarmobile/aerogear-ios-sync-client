@@ -9,5 +9,5 @@ pod 'AeroGearSync/Core', '1.0.0-alpha.2'
 
 target 'AeroGearSyncClientTests' do
     pod 'Starscream', '0.9.3'
-    pod 'AeroGearSync/Core', '1.0.0-alpha.2
+    pod 'AeroGearSync/Core', '1.0.0-alpha.2'
 end
