@@ -4,10 +4,10 @@ xcodeproj 'AeroGearSyncClient.xcodeproj'
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'Starscream', '0.9.3'
-pod 'AeroGearSync/Core', '1.0.0-alpha.2'
+pod 'Starscream', :git => 'git@github.com:daltoniam/Starscream.git'
+pod 'AeroGearSync/Core', :git => 'git@github.com:corinnekrych/aerogear-ios-sync.git', :branch => 'swift-2.0'
 
 target 'AeroGearSyncClientTests' do
-    pod 'Starscream', '0.9.3'
-    pod 'AeroGearSync/Core', '1.0.0-alpha.2'
+    pod 'Starscream', :git => 'git@github.com:daltoniam/Starscream.git'
+    pod 'AeroGearSync/Core', :git => 'git@github.com:corinnekrych/aerogear-ios-sync.git', :branch => 'swift-2.0'
 end
