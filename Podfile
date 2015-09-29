@@ -9,5 +9,5 @@ pod 'AeroGearSync/Core', :git => 'https://github.com/aerogear/aerogear-ios-sync'
 
 target 'AeroGearSyncClientTests' do
     pod 'Starscream', :git => 'https://github.com/daltoniam/Starscream'
-    pod 'AeroGearSync/Core', :git => 'https://github.com/corinnekrych/aerogear-ios-sync'
+    pod 'AeroGearSync/Core', :git => 'https://github.com/aerogear/aerogear-ios-sync'
 end
