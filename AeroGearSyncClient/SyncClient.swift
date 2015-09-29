@@ -131,7 +131,7 @@ public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS
         if let patchMessage = syncEngine.patchMessageFromJson(text) {
             syncEngine.patch(patchMessage)
         } else {
-            println("Received none patchMessage: \(text)")
+            print("Received none patchMessage: \(text)")
         }
     }
     
@@ -139,17 +139,17 @@ public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS
     Delegated method from WebSocketDelegate which happens when the connect was successful.
     */
     public func websocketDidConnect(ws: WebSocket) {
-        println("Websocket is connected")
+        print("Websocket is connected")
     }
     
     /**
     Delegated method from WebSocketDelegate which happens when a disconnect occurs.
     */
     public func websocketDidDisconnect(ws: WebSocket, error: NSError?) {
-        if let err = error {
-            println("Websocket is disconnected with error: \(error!.localizedDescription)")
+        if let _ = error {
+            print("Websocket is disconnected with error: \(error!.localizedDescription)")
         } else {
-            println("Websocket is disconnected")
+            print("Websocket is disconnected")
         }
     }
     
@@ -159,7 +159,7 @@ public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS
     :param: error contains the details of the error.
     */
     public func websocketDidWriteError(ws: WebSocket, error: NSError?) {
-        println("Error from the Websocket: \(error!.localizedDescription)")
+        print("Error from the Websocket: \(error!.localizedDescription)")
     }
     
     /**
@@ -168,7 +168,7 @@ public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS
     :param: data binary representation of the data received.
     */
     public func websocketDidReceiveData(ws: WebSocket, data: NSData) {
-        println("Message: \(data)")
+        print("Message: \(data)")
     }
     
 }
