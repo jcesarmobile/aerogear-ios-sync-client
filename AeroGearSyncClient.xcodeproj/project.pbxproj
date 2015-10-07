@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0A31614CEBC8C902A713E467 /* Pods_AeroGearSyncClientTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06B7AF61E1884BAC4B23D3A6 /* Pods_AeroGearSyncClientTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		48A3DB6F1BC5A65D0047BC74 /* SyncClientJsonPatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A3DB6E1BC5A65C0047BC74 /* SyncClientJsonPatch.swift */; settings = {ASSET_TAGS = (); }; };
 		48D7D5E81A7A6B84000116C5 /* AeroGearSyncClient.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 48DBD5071A6559C1003239EC /* AeroGearSyncClient.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		48DBD5131A6559C1003239EC /* AeroGearSyncClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48DBD5071A6559C1003239EC /* AeroGearSyncClient.framework */; };
-		48DBD5611A655AB8003239EC /* SyncClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DBD55B1A655AB8003239EC /* SyncClient.swift */; };
 		48DBD56A1A65627E003239EC /* SyncClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DBD5681A65627E003239EC /* SyncClientTests.swift */; };
 		E744BA188BC6AF48F9748A39 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76F24E3E0F3B8312D704AC6 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -40,11 +40,11 @@
 
 /* Begin PBXFileReference section */
 		06B7AF61E1884BAC4B23D3A6 /* Pods_AeroGearSyncClientTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AeroGearSyncClientTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		48A3DB6E1BC5A65C0047BC74 /* SyncClientJsonPatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncClientJsonPatch.swift; sourceTree = "<group>"; };
 		48DBD5071A6559C1003239EC /* AeroGearSyncClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AeroGearSyncClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		48DBD50B1A6559C1003239EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48DBD5121A6559C1003239EC /* AeroGearSyncClientTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AeroGearSyncClientTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		48DBD5181A6559C1003239EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		48DBD55B1A655AB8003239EC /* SyncClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncClient.swift; sourceTree = "<group>"; };
 		48DBD5681A65627E003239EC /* SyncClientTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncClientTests.swift; sourceTree = "<group>"; };
 		5E29E479356A45EC8626E768 /* Pods-AeroGearSyncClientTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AeroGearSyncClientTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AeroGearSyncClientTests/Pods-AeroGearSyncClientTests.debug.xcconfig"; sourceTree = "<group>"; };
 		614BD584CE14A7A4B8BED874 /* Pods-AeroGearSyncClientTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AeroGearSyncClientTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AeroGearSyncClientTests/Pods-AeroGearSyncClientTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 		48DBD5091A6559C1003239EC /* AeroGearSyncClient */ = {
 			isa = PBXGroup;
 			children = (
-				48DBD55B1A655AB8003239EC /* SyncClient.swift */,
+				48A3DB6E1BC5A65C0047BC74 /* SyncClientJsonPatch.swift */,
 				48DBD50A1A6559C1003239EC /* Supporting Files */,
 			);
 			path = AeroGearSyncClient;
@@ -355,7 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48DBD5611A655AB8003239EC /* SyncClient.swift in Sources */,
+				48A3DB6F1BC5A65D0047BC74 /* SyncClientJsonPatch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
