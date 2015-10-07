@@ -16,7 +16,7 @@
 */
 
 import Foundation
-import AeroGearSyncJsonPatch
+import AeroGearSyncDiffMatchPatch
 import Starscream
 
 /**
