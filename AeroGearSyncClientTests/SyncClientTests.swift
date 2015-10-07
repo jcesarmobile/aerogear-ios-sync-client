@@ -18,7 +18,6 @@ import UIKit
 
 import XCTest
 import AeroGearSyncClient
-import AeroGearSync
 
 /*
 class SyncClientTests: XCTestCase {
