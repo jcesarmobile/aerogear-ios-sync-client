@@ -1,7 +1,7 @@
 language: objective-c
 osx_image: xcode7
-xcode_workspace: AeroGearSyncClient.xcworkspace
-xcode_scheme: AeroGearSyncClient
+xcode_workspace: AeroGearSyncClientJsonPatch.xcworkspace
+xcode_scheme: AeroGearSyncClientJsonPatch
 xcode_sdk: iphonesimulator
 
 before_install:
