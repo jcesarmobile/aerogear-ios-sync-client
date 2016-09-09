@@ -27,7 +27,7 @@ The project uses [cocoapods](http://cocoapods.org) for handling its dependencies
 ```bash
 pod install
 ```
-3. open AeroGearSyncClient.xcworkspace
+3. open AeroGearSyncClientJsonPatch.xcworkspace
 
 ## Adding the library to your project 
 To add the library in your project, you can either use [CocoaPods](http://cocoapods.org) or manual install in your project. See the respective sections below for instructions:
@@ -47,7 +47,7 @@ target 'YourProjectName' do
 end
 
 ```
-NOTE: AeroGearSync is using podsubspec, you will need to specify which algorithm option you want to go. For more details, see [aerogear-ios-cookbook/Jedi app](https://github.com/aerogear/aerogear-ios-cookbook/tree/master/Jedi).
+
 and then:
 
 ```bash
