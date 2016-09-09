@@ -2,8 +2,8 @@
 //  AeroGearSyncClientJsonPatch.h
 //  AeroGearSyncClientJsonPatch
 //
-//  Created by Corinne Krych on 07/10/15.
-//  Copyright © 2015 aerogear. All rights reserved.
+//  Created by Corinne Krych on 07/09/16.
+//  Copyright © 2016 AeroGear. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
