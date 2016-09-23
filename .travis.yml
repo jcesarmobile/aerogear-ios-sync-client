@@ -4,6 +4,9 @@ xcode_workspace: AeroGearSyncClientJsonPatch.xcworkspace
 xcode_scheme: AeroGearSyncClientJsonPatch
 xcode_sdk: iphonesimulator
 
+before_install:
+  - pod repo update
+
 notifications:
   irc: "irc.freenode.org#aerogear"
 
