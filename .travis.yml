@@ -13,3 +13,5 @@ notifications:
 branches:
   only:
     - master
+script:
+  - xcodebuild -workspace AeroGearSyncClientJsonPatch.xcworkspace -scheme AeroGearSyncClientJsonPatch -sdk iphonesimulator build
