@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.source       = {:git => 'https://github.com/aerogear/aerogear-ios-sync-client.git', :tag => s.version }
   s.platform     = :ios, 8.0
   s.requires_arc = 'true'
-  s.source_files = 'AeroGearSyncClient/SyncClientJsonPatch.swift'
+  s.source_files = 'AeroGearSyncClientJsonPatch/SyncClientJsonPatch.swift'
   s.dependency  'AeroGearSyncJsonPatch', '1.0.0-alpha.3'
   s.dependency  'Starscream', '1.1.4'
 end
