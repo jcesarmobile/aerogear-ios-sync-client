@@ -14,5 +14,5 @@ Pod::Spec.new do |s|
   s.requires_arc = 'true'
   s.source_files = 'AeroGearSyncClient/SyncClientJsonPatch.swift'
   s.dependency  'AeroGearSyncJsonPatch', '1.0.0-alpha.3'
-  s.dependency  'Starscream'
+  s.dependency  'Starscream', '1.1.4'
 end
