@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "AeroGearSyncClientJsonPatch"
-  s.version      = "1.0.0-alpha.3"
+  s.version      = "1.0.0-alpha.4"
   s.summary      = "An iOS Sync Client for AeroGear Differential Synchronization"
     s.description  = <<-DESC
   AeroGearSyncClient is using the synchronisation engine based on Google Diff Match Patch algorithm.
@@ -13,6 +13,6 @@ Pod::Spec.new do |s|
   s.platform     = :ios, 8.0
   s.requires_arc = 'true'
   s.source_files = 'AeroGearSyncClientJsonPatch/SyncClientJsonPatch.swift'
-  s.dependency  'AeroGearSyncJsonPatch', '1.0.0-alpha.3'
+  s.dependency  'AeroGearSyncJsonPatch', '1.0.0-alpha.4'
   s.dependency  'Starscream', '1.1.4'
 end
