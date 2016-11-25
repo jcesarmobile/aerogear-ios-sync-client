@@ -27,7 +27,7 @@ The ClientSynchronizer generic type is the type that this implementation can han
 The DataStore generic type is the type that this implementation can handle. For now, we have InMemoryDataStore only.
 The ClientSynchronizer and DataStore should have compatible document type.
 */
-public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS.D == D.D, CS.P.E == CS.D> : WebSocketDelegate {
+open class SyncClient<CS:ClientSynchronizer, D:DataStore> : WebSocketDelegate where CS.T == D.T, CS.D == D.D, CS.P.E == CS.D {
     
     typealias T = CS.T
     
@@ -54,7 +54,7 @@ public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS
     :param: contentSerializer a concrete ContentSerializer that allows for control of serializing the document content.
     */
     public convenience init(url: String, syncEngine: ClientSyncEngine<CS, D>) {
-        self.init(url: url, optionalProtocols: Optional.None, syncEngine: syncEngine)
+        self.init(url: url, optionalProtocols: Optional.none, syncEngine: syncEngine)
     }
     
     /**
@@ -69,13 +69,13 @@ public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS
         self.init(url: url, optionalProtocols: protocols, syncEngine: syncEngine)
     }
     
-    private init(url: String, optionalProtocols: Array<String>?, syncEngine: ClientSyncEngine<CS, D>) {
+    fileprivate init(url: String, optionalProtocols: Array<String>?, syncEngine: ClientSyncEngine<CS, D>) {
         self.syncEngine = syncEngine
         
         if let protocols = optionalProtocols {
-            ws = WebSocket(url: NSURL(string: url)!, protocols: protocols)
+            ws = WebSocket(url: NSURL(string: url)! as URL, protocols: protocols)
         } else {
-            ws = WebSocket(url: NSURL(string: url)!)
+            ws = WebSocket(url: NSURL(string: url)! as URL)
         }
         ws.delegate = self
     }
@@ -85,7 +85,7 @@ public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS
     
     :returns: self to support method chaining.
     */
-    public func connect() -> Self {
+    open func connect() -> Self {
         ws.connect()
         return self
     }
@@ -96,9 +96,9 @@ public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS
     :param: doc the ClientDocument to add to this SyncClient.
     :param: callback the callback that will be invoked with updates from the server.
     */
-    public func addDocument(doc: ClientDocument<T>, callback: (ClientDocument<T>) -> ()) {
-        syncEngine.addDocument(doc, callback: callback)
-        ws.writeString(syncEngine.documentToJson(doc))
+    open func addDocument(doc: ClientDocument<T>, callback: @escaping (ClientDocument<T>) -> ()) {
+        syncEngine.add(clientDocument: doc, callback: callback)
+        ws.write(string: syncEngine.documentToJson(clientDocument: doc))
     }
     
     /**
@@ -108,9 +108,9 @@ public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS
     :param: doc the ClientDocument with updates to be diffed.
     :returns: self to support method chaining.
     */
-    public func diffAndSend(doc: ClientDocument<T>) -> Self {
-        if let patchMessage = syncEngine.diff(doc) {
-            ws.writeString(patchMessage.asJson())
+    open func diffAndSend(_ doc: ClientDocument<T>) -> Self {
+        if let patchMessage = syncEngine.diff(clientDocument: doc) {
+            ws.write(string:patchMessage.asJson())
         }
         return self
     }
@@ -118,7 +118,7 @@ public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS
     /**
     Disconnects this SyncClient from the server.
     */
-    public func disconnect() {
+    open func disconnect() {
         ws.disconnect()
     }
     
@@ -127,9 +127,9 @@ public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS
     
     :param: text string representation of the message received.
     */
-    public func websocketDidReceiveMessage(ws: WebSocket, text: String) {
-        if let patchMessage = syncEngine.patchMessageFromJson(text) {
-            syncEngine.patch(patchMessage)
+    open func websocketDidReceiveMessage(socket ws: WebSocket, text: String) {
+        if let patchMessage = syncEngine.patchMessageFromJson(json: text) {
+            syncEngine.patch(patchMessage: patchMessage)
         } else {
             print("Received none patchMessage: \(text)")
         }
@@ -138,14 +138,14 @@ public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS
     /**
     Delegated method from WebSocketDelegate which happens when the connect was successful.
     */
-    public func websocketDidConnect(ws: WebSocket) {
+    open func websocketDidConnect(socket ws: WebSocket) {
         print("Websocket is connected")
     }
     
     /**
     Delegated method from WebSocketDelegate which happens when a disconnect occurs.
     */
-    public func websocketDidDisconnect(ws: WebSocket, error: NSError?) {
+    open func websocketDidDisconnect(socket ws: WebSocket, error: NSError?) {
         if let _ = error {
             print("Websocket is disconnected with error: \(error!.localizedDescription)")
         } else {
@@ -158,7 +158,7 @@ public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS
     
     :param: error contains the details of the error.
     */
-    public func websocketDidWriteError(ws: WebSocket, error: NSError?) {
+    open func websocketDidWriteError(_ ws: WebSocket, error: NSError?) {
         print("Error from the Websocket: \(error!.localizedDescription)")
     }
     
@@ -167,7 +167,7 @@ public class SyncClient<CS:ClientSynchronizer, D:DataStore where CS.T == D.T, CS
     
     :param: data binary representation of the data received.
     */
-    public func websocketDidReceiveData(ws: WebSocket, data: NSData) {
+    open func websocketDidReceiveData(socket ws: WebSocket, data: Data) {
         print("Message: \(data)")
     }
     
