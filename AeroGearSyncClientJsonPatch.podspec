@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   AeroGearSyncClient is using the synchronisation engine based on Google Diff Match Patch algorithm.
   This Client is based on WebSocket implementation. 
                    DESC
-  s.homepage     = "https://github.com/aerogear/aerogear-sync-server"
+  s.homepage     = "https://github.com/aerogear/aerogear-ios-sync-client"
   s.license      = 'Apache License, Version 2.0'
   s.author       = "Red Hat, Inc."
   s.source       = {:git => 'https://github.com/aerogear/aerogear-ios-sync-client.git', :tag => s.version }
