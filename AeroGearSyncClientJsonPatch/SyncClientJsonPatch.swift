@@ -29,7 +29,7 @@ The ClientSynchronizer and DataStore should have compatible document type.
 */
 open class SyncClient<CS:ClientSynchronizer, D:DataStore> : WebSocketDelegate where CS.T == D.T, CS.D == D.D, CS.P.E == CS.D {
     
-    typealias T = CS.T
+    public typealias T = CS.T
     
     /**
     Websocket object initialized as part of default SyncClient initialization.
