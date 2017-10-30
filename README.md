@@ -1,4 +1,6 @@
-# aerogear ios sync client [![Build Status](https://travis-ci.org/aerogear/aerogear-ios-sync-client.png)](https://travis-ci.org/aerogear/aerogear-ios-sync-client) [![Pod Version](http://img.shields.io/cocoapods/v/AeroGearSyncClient.svg?style=flat)](http://cocoadocs.org/docsets/AeroGearSyncClientJsonPatch/)
+# aerogear ios sync client
+[![circle-ci](https://img.shields.io/circleci/project/github/aerogear/aerogear-ios-sync-client/master.svg)](https://circleci.com/gh/aerogear/aerogear-ios-sync-client)
+[![Pod Version](http://img.shields.io/cocoapods/v/AeroGearSyncClientJsonPatch.svg?style=flat)](http://cocoadocs.org/docsets/AeroGearSyncClientJsonPatch/)
 
 > This module currently build with Xcode 9 (Swift 4) and supports iOS9, iOS10 and iOS11.
 
@@ -27,13 +29,13 @@ The project uses [cocoapods](http://cocoapods.org) for handling its dependencies
 ```bash
 pod install
 ```
-3. open AeroGearSyncClientJsonPatch.xcworkspace
+3. open `AeroGearSyncClientJsonPatch.xcworkspace`
 
 ## Adding the library to your project
 To add the library in your project, you can either use [CocoaPods](http://cocoapods.org) or manual install in your project. See the respective sections below for instructions:
 
 ### Using [CocoaPods](http://cocoapods.org)
-Support for Swift frameworks is supported from [CocoaPods](http://cocoapods.org) upwards. In your ```Podfile``` add:
+Support for Swift frameworks is supported from [CocoaPods](http://cocoapods.org) upwards. In your `Podfile` add:
 
 ```
 source 'https://github.com/CocoaPods/Specs.git'
