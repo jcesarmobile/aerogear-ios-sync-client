@@ -29,7 +29,7 @@ The ClientSynchronizer and DataStore should have compatible document type.
 */
 open class SyncClient<CS:ClientSynchronizer, D:DataStore> : WebSocketDelegate where CS.T == D.T, CS.D == D.D, CS.P.E == CS.D {
     
-    typealias T = CS.T
+    public typealias T = CS.T
     
     /**
     Websocket object initialized as part of default SyncClient initialization.
@@ -127,7 +127,7 @@ open class SyncClient<CS:ClientSynchronizer, D:DataStore> : WebSocketDelegate wh
     
     :param: text string representation of the message received.
     */
-    open func websocketDidReceiveMessage(socket ws: WebSocket, text: String) {
+    open func websocketDidReceiveMessage(socket ws: WebSocketClient, text: String) {
         if let patchMessage = syncEngine.patchMessageFromJson(json: text) {
             syncEngine.patch(patchMessage: patchMessage)
         } else {
@@ -138,14 +138,14 @@ open class SyncClient<CS:ClientSynchronizer, D:DataStore> : WebSocketDelegate wh
     /**
     Delegated method from WebSocketDelegate which happens when the connect was successful.
     */
-    open func websocketDidConnect(socket ws: WebSocket) {
+    open func websocketDidConnect(socket ws: WebSocketClient) {
         print("Websocket is connected")
     }
     
     /**
     Delegated method from WebSocketDelegate which happens when a disconnect occurs.
     */
-    open func websocketDidDisconnect(socket ws: WebSocket, error: NSError?) {
+    open func websocketDidDisconnect(socket ws: WebSocketClient, error: Error?) {
         if let _ = error {
             print("Websocket is disconnected with error: \(error!.localizedDescription)")
         } else {
@@ -158,7 +158,7 @@ open class SyncClient<CS:ClientSynchronizer, D:DataStore> : WebSocketDelegate wh
     
     :param: error contains the details of the error.
     */
-    open func websocketDidWriteError(_ ws: WebSocket, error: NSError?) {
+    open func websocketDidWriteError(_ ws: WebSocketClient, error: NSError?) {
         print("Error from the Websocket: \(error!.localizedDescription)")
     }
     
@@ -167,7 +167,7 @@ open class SyncClient<CS:ClientSynchronizer, D:DataStore> : WebSocketDelegate wh
     
     :param: data binary representation of the data received.
     */
-    open func websocketDidReceiveData(socket ws: WebSocket, data: Data) {
+    open func websocketDidReceiveData(socket ws: WebSocketClient, data: Data) {
         print("Message: \(data)")
     }
     
